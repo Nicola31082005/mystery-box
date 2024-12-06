@@ -2,8 +2,9 @@
   "name": "mystery-box",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite"
   },
   "keywords": [],
   "author": "",
@@ -11,5 +12,8 @@
   "description": "",
   "dependencies": {
     "lite-html": "^0.2.4"
+  },
+  "devDependencies": {
+    "vite": "^6.0.3"
   }
 }
