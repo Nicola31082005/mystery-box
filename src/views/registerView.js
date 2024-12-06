@@ -62,5 +62,5 @@ async function registerHandler(e) {
     }
 }
 
-//TODO: Make a register authentication through firebase auth service.
+
 //
