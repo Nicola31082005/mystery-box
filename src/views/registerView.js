@@ -1,4 +1,7 @@
-import {html} from 'lite-html'
+import { html } from 'lite-html'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../../firebase.js' 
+import page from 'page'
 
 const template = (onSubmit) => html`
  
@@ -19,9 +22,6 @@ const template = (onSubmit) => html`
       <div>
         <div class="flex items-center justify-between">
           <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
-          <div class="text-sm">
-            <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
-          </div>
         </div>
         <div class="mt-2">
           <input type="password" name="password" id="password" autocomplete="current-password" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
@@ -52,4 +52,15 @@ async function registerHandler(e) {
 
     const email = formData.get('email')
     const password = formData.get('password')
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      console.log(userCredential);
+      page.redirect('/')
+    } catch(err){
+      console.log(err.message);
+    }
 }
+
+//TODO: Make a register authentication through firebase auth service.
+//
