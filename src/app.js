@@ -1,4 +1,15 @@
 import page from "page";
-import '.'
+import { homeView } from "./views/homeView.js";
+import { layoutView } from "./middleware/layoutMiddleware.js";
+import { boxesView } from "./views/boxesView.js";
 
-console.log('hi ');
+page(layoutView)
+page('/', homeView)
+page('/boxes', boxesView)
+// page('/features', featuresView)
+
+
+
+
+// start page
+page.start()
