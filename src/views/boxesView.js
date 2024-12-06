@@ -1,4 +1,4 @@
-import {html, render} from 'lite-html'
+import {html} from 'lite-html'
 
 const template = () => html`
      

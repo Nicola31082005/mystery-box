@@ -16,11 +16,13 @@ const layoutTemplate = (body) => html`
         <a href="/features" class="text-sm/6 font-semibold text-gray-900">Features</a>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="#" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+        <a href="/register" class="text-sm/6 font-semibold text-gray-900">Register <span aria-hidden="true">&rarr;</span></a>
       </div>
     </nav>
   </header>
+
   ${body}
+
 </div>
 `;
 
@@ -28,7 +30,6 @@ const layoutTemplate = (body) => html`
 export function layoutView(ctx, next) {
     
     ctx.render = (template) => render(layoutTemplate(template), mainEl)  
-
 
     next()
 }
