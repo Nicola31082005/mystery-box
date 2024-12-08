@@ -1,4 +1,5 @@
 import { html, render } from "lite-html"
+import { logout } from "../services/userServices";
 
 const mainEl = document.querySelector('#root')
 
@@ -47,6 +48,7 @@ export function layoutView(ctx, next) {
 
 async function logoutHandler() {
   
-
+  const response =  await logout()
+  page.redirect('/')
 
 }
