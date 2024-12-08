@@ -32,6 +32,13 @@ const template = (onSubmit) => html`
         <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
       </div>
     </form>
+    
+    <div class="mt-6 text-center">
+      <p class="text-sm text-gray-600">
+        Not having an account? 
+        <a href="/register" class="font-semibold text-indigo-600 hover:text-indigo-500">Register</a>
+      </p>
+    </div>
 
   </div>
 </div>
