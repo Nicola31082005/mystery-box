@@ -4,8 +4,13 @@ import { layoutView } from "./middleware/layoutMiddleware.js";
 import { boxesView } from "./views/boxesView.js";
 import { loginView } from "./views/loginView.js";
 import { registerView } from "./views/registerView.js";
+import ctxEnhancer from "./middleware/ctxEnhancer.js";
 
+//middlewares
 page(layoutView)
+page(ctxEnhancer)
+
+//routes
 page('/', homeView)
 page('/boxes', boxesView)
 page('/login', loginView)
