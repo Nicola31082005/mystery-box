@@ -1,7 +1,6 @@
 import { html } from 'lite-html'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../firebase.js' 
 import page from 'page'
+import { login } from '../services/userServices.js'
 
 const template = (onSubmit) => html`
  
@@ -32,7 +31,7 @@ const template = (onSubmit) => html`
         <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
       </div>
     </form>
-    
+
     <div class="mt-6 text-center">
       <p class="text-sm text-gray-600">
         Not having an account? 
@@ -61,7 +60,7 @@ async function loginHandler(e) {
     const password = formData.get('password')
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password)
+      const userCredential = await login(email, password)
       console.log(userCredential);
       page.redirect('/')
     } catch(err){
@@ -70,4 +69,3 @@ async function loginHandler(e) {
 }
 
 
-//

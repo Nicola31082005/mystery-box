@@ -1,12 +1,10 @@
 import { html } from "lite-html";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
 
 const template = (onSubmit) => html`
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 class="mt-20 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Sign up</h2>
+        <h2 class="mt-20 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Register</h2>
     </div>
 
   <div class="mt-20 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -68,7 +66,7 @@ async function registerHandler(e) {
     }
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      const userCredential = await registerHandler(email, password)
       console.log(userCredential);
       page.redirect('/')
     } catch(err){
