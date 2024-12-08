@@ -1,5 +1,5 @@
 import { html } from 'lite-html'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase.js' 
 import page from 'page'
 
@@ -7,7 +7,7 @@ const template = (onSubmit) => html`
  
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="mt-20 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Sign up to your account</h2>
+    <h2 class="mt-20 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Sign in to your account</h2>
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -29,7 +29,7 @@ const template = (onSubmit) => html`
       </div>
 
       <div>
-        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign up</button>
+        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
       </div>
     </form>
 
@@ -38,14 +38,14 @@ const template = (onSubmit) => html`
 
 ` 
 
-export function registerView(ctx) {
+export function loginView(ctx) {
     
-const registerTemplate = template(registerHandler)
-ctx.render(registerTemplate)
+const loginTemplate = template(loginHandler)
+ctx.render(loginTemplate)
 
 }
 
-async function registerHandler(e) {
+async function loginHandler(e) {
     e.preventDefault()
 
     const formData = new FormData(e.currentTarget);
@@ -54,7 +54,7 @@ async function registerHandler(e) {
     const password = formData.get('password')
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      const userCredential = await signInWithEmailAndPassword(auth, email, password)
       console.log(userCredential);
       page.redirect('/')
     } catch(err){
