@@ -7,8 +7,8 @@ import { registerView } from "./views/registerView.js";
 import ctxEnhancer from "./middleware/ctxEnhancer.js";
 
 //middlewares
-page(layoutView)
 page(ctxEnhancer)
+page(layoutView)
 
 //routes
 page('/', homeView)

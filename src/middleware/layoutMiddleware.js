@@ -1,5 +1,6 @@
 import { html, render } from "lite-html"
 import { logout } from "../services/userServices";
+import page from "page";
 
 const mainEl = document.querySelector('#root')
 
@@ -17,7 +18,7 @@ const layoutTemplate = (bodyTemplate, isAuthenticated) => html`
         <a href="/features" class="text-sm/6 font-semibold text-gray-900">Features</a>
       </div>
 
-      ${isAuthenticated ?
+      ${!isAuthenticated ?
         html`
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
         <a href="/login" class="text-sm/6 font-semibold text-gray-900">Login<span aria-hidden="true">&rarr;</span></a>
@@ -25,7 +26,7 @@ const layoutTemplate = (bodyTemplate, isAuthenticated) => html`
         ` :
         html`
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-        <a href="javascript:void(0)" class="text-sm/6 font-semibold text-gray-900" @submit=${logoutHandler}>Logout<span aria-hidden="true">&rarr;</span></a>
+        <a href="javascript:void(0)" class="text-sm/6 font-semibold text-gray-900" @click=${logoutHandler}>Logout<span aria-hidden="true">&rarr;</span></a>
       </div>
         `
       }

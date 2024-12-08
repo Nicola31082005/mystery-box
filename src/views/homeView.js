@@ -1,4 +1,4 @@
-import {html, render} from 'lite-html'
+import {html} from 'lite-html'
 
 const template = () => html`
       <!-- Mobile menu, show/hide based on menu open state. -->
@@ -52,7 +52,5 @@ export function homeView(ctx) {
     
 const homeTemplate = template()
 ctx.render(homeTemplate)
-
-
 
 }
