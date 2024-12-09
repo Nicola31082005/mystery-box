@@ -8,27 +8,41 @@ const mainEl = document.querySelector('#root')
 const layoutTemplate = (bodyTemplate, isAuthenticated) => html`
 <div class="bg-white">
   <header class="absolute inset-x-0 top-0 z-50">
-    <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <nav class="flex items-center justify-between p-6 lg:px-8 min-h-24" aria-label="Global">
       <div class="flex lg:flex-1">
         <a href="/" class="flex items-center">
-          <img src=${logo} alt="Logo" class="max-h-16" /> <!-- Logo size adjustment -->
+          <img src=${logo} alt="Logo" class="h-auto max-h-24" /> <!-- Logo size adjustment -->
         </a>
       </div>
-      <div class="hidden lg:flex lg:gap-x-12">
-        <a href="/boxes" class="text-base font-semibold text-gray-900 hover:text-gray-700">Boxes</a> <!-- Consistent text size -->
-        <a href="/features" class="text-base font-semibold text-gray-900 hover:text-gray-700">Features</a> <!-- Consistent text size -->
-      </div>
+      <div class="hidden lg:flex lg:gap-x-8 items-center">
+  <a href="/boxes" class="relative text-lg font-semibold text-gray-900 hover:text-pink-600 transition-all duration-300 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-pink-600 hover:after:w-full after:transition-all after:duration-300">
+    Boxes
+  </a>
+  <a href="/features" class="relative text-lg font-semibold text-gray-900 hover:text-pink-600 transition-all duration-300 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-pink-600 hover:after:w-full after:transition-all after:duration-300">
+    Features
+  </a>
+</div>
 
       ${!isAuthenticated ?
         html`
-          <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="/login" class="text-base font-semibold text-gray-900 hover:text-gray-700">Login<span aria-hidden="true">&rarr;</span></a>
-          </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end items-center">
+          <a href="/login" class="flex items-center gap-2 text-lg font-semibold text-gray-900 hover:text-pink-600 transition-all duration-300 group">
+            Login
+            <span aria-hidden="true" class="transition-transform transform group-hover:translate-x-1">
+              &rarr;
+            </span>
+          </a>
+        </div>
         ` :
         html`
-          <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="javascript:void(0)" class="text-base font-semibold text-gray-900 hover:text-gray-700" @click=${logoutHandler}>Logout<span aria-hidden="true">&rarr;</span></a>
-          </div>
+        <div class="hidden lg:flex lg:flex-1 lg:justify-end items-center">
+          <a href="javascript:void:(0)" @click=${logoutHandler} class="flex items-center gap-2 text-lg font-semibold text-gray-900 hover:text-pink-600 transition-all duration-300 group">
+            Logout
+            <span aria-hidden="true" class="transition-transform transform group-hover:translate-x-1">
+              &rarr;
+            </span>
+          </a>
+        </div>
         `
       }
     </nav>
