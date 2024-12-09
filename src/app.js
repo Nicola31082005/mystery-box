@@ -15,6 +15,7 @@ page('/', homeView)
 page('/boxes', boxesView)
 page('/login', loginView)
 page('/register',registerView)
+page('/boxes', boxesView)
 
 // page('/features', featuresView)
 
