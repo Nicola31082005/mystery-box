@@ -1,4 +1,4 @@
-import {html} from 'lite-html'
+import { html } from 'lite-html'
 import { boxesApi } from '../services/firebaseService'
 
 const template = (boxes) => html`
