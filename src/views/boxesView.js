@@ -38,7 +38,16 @@ const template = (boxes) => html`
 export async function boxesView(ctx) {
 
 try{
-    const boxes = await boxesApi.getAll()  
+
+
+    const data = await boxesApi.getAll()
+    const boxes = Object.keys(data).map(k =>  ({
+        _id: k,
+        ...data[k]
+    }))
+
+    console.log(boxes);
+     
     const boxesTemplate = template(boxes)
     ctx.render(boxesTemplate)
 

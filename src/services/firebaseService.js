@@ -2,12 +2,16 @@ const baseUrl = 'https://mystery-box-project-default-rtdb.europe-west1.firebased
 
 async function request(endpoint, method = "GET", data = null) {
     
+const headers = {
+"Content-Type": "application/json",
+};
+
 const options = { 
     method,
-    headers: { "Content-Type" : "application/json" },
+    headers
  }
 
-if (body) {
+if (data) {
     options.body =  JSON.stringify(data)
 }
 
@@ -18,7 +22,7 @@ if (body) {
     throw new Error(error.error || "Firebase request failed");
   }
 
-  if (response.status = 204) {
+  if (response.status === 204) {
     return
   }
 
