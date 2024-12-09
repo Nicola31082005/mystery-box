@@ -4,7 +4,7 @@ import { boxesApi } from '../services/firebaseService'
 const template = (boxes) => html`
 <section class="bg-gray-100 py-12">
   <div class="container mx-auto px-6 lg:px-16">
-    <h1 class="text-4xl font-extrabold text-gray-800 text-center mb-10">Mystery Boxes</h1>
+    <h1 class="text-4xl font-extrabold text-gray-800 text-center mb-10 mt-20">Mystery Boxes</h1>
     <p class="text-lg text-gray-600 text-center mb-12">
       Discover the thrill of surprise! Explore our collection of mystery boxes and unlock a world of excitement.
     </p>
@@ -39,14 +39,12 @@ export async function boxesView(ctx) {
 
 try{
 
-
     const data = await boxesApi.getAll()
     const boxes = Object.keys(data).map(k =>  ({
         _id: k,
         ...data[k]
     }))
 
-    console.log(boxes);
      
     const boxesTemplate = template(boxes)
     ctx.render(boxesTemplate)
