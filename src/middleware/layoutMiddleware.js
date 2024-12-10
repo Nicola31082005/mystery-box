@@ -60,10 +60,14 @@ const layoutTemplate = (bodyTemplate, isAuthenticated) => html`
 
 
 export function layoutView(ctx, next) {
-    
-  ctx.render = (bodyTemplate) => render(layoutTemplate(bodyTemplate, ctx.isAuthenticated()), mainEl)  
+  // Set the render method to include the bodyTemplate and auth state
+  ctx.render = (bodyTemplate) => {
+    ctx.bodyTemplate = bodyTemplate;  // Store the bodyTemplate
+    render(layoutTemplate(bodyTemplate, ctx.isAuthenticated), mainEl);  // Re-render with updated auth state
+  };
 
-  next()
+  // Call the next middleware in the stack
+  next();
 }
 
 async function logoutHandler() {
