@@ -10,7 +10,7 @@ const template = (onSubmit) => html`
     <h2 class="mt-20 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Sign in to your account</h2>
   </div>
 
-  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+  <div class="mt-20 sm:mx-auto sm:w-full sm:max-w-sm">
     <form class="space-y-6" action="#" method="POST" @submit=${onSubmit}>
       <div>
         <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
