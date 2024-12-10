@@ -1,6 +1,6 @@
 import { html } from "lite-html";
 
-const template = () => html`
+const template = (user) => html`
 <!-- Add margin below the header -->
 <div class="mt-24 min-h-screen bg-gray-50">
     <!-- Main Content -->
@@ -18,7 +18,7 @@ const template = () => html`
             <!-- User Details -->
             <div>
               <h2 class="text-lg font-semibold text-gray-900">Welcome,</h2>
-              <p class="text-sm text-gray-600">authenticatedEmail</p> <!-- Replace with actual user email -->
+              <p class="text-sm text-gray-600">${user.email}</p> <!-- Replace with actual user email -->
             </div>
           </div>
 
@@ -79,7 +79,8 @@ const template = () => html`
 
 export async function profileView(ctx) {
     
-    const profileTemplate = template()
+    const user = ctx.getUser()
+    const profileTemplate = template(user)
     ctx.render(profileTemplate)
 
 
