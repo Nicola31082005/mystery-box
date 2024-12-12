@@ -2,9 +2,9 @@ import { html } from 'lite-html'
 import { boxesApi } from '../services/firebaseService'
 
 const template = (boxes) => html`
-<section class="mt-10 bg-gray-100 py-12">
+<section class="min-h-screen bg-gray-100 py-12">
   <div class="container mx-auto px-6 lg:px-16">
-    <h1 class="text-4xl font-extrabold text-gray-800 text-center mb-10 mt-20">Mystery Boxes</h1>
+    <h1 class="text-4xl font-extrabold text-gray-800 text-center mb-10 mt-28">Mystery Boxes</h1>
     <p class="text-lg text-gray-600 text-center mb-12">
       Discover the thrill of surprise! Explore our collection of mystery boxes and unlock a world of excitement.
     </p>
