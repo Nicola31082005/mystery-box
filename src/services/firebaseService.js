@@ -1,4 +1,7 @@
+import { getCurrentDeals } from "../../functions";
+
 const baseUrl = 'https://mystery-box-project-default-rtdb.europe-west1.firebasedatabase.app'
+const functionsBaseUrl = 'https://us-central1-mystery-box-project.cloudfunctions.net'
 
 async function request(endpoint, method = "GET", data = null) {
     
@@ -35,5 +38,17 @@ export const boxesApi = {
     getAll: () => request('/boxes', "GET"),
     getOne: (id) => request(`/boxes/${id}`, "GET"),
     updateBox: (id) => request(`/boxes/${id}`, "POST", data),
+
+}
+
+export const dealsApi = {
+
+  getCurrentDeals: async () => {
+    request(`${functionsBaseUrl}/getCurrentDeals`)
+  },
+  addNewDeal: async (dealData) => {
+    request(`${functionsBaseUrl}/addNewDeal`, 'POST', dealData)
+  }
+
 
 }
