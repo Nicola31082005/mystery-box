@@ -19,8 +19,8 @@ const layoutTemplate = (bodyTemplate, isAuthenticated) => html`
         <a href="/boxes" class="relative text-lg font-semibold text-gray-700 hover:text-pink-500 transition-all duration-300 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-pink-500 hover:after:w-full after:transition-all after:duration-300">
           Boxes
         </a>
-        <a href="/features" class="relative text-lg font-semibold text-gray-700 hover:text-pink-500 transition-all duration-300 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-pink-500 hover:after:w-full after:transition-all after:duration-300">
-          Features
+        <a href="/boxes/surprise" class="relative text-lg font-semibold text-gray-700 hover:text-pink-500 transition-all duration-300 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-pink-500 hover:after:w-full after:transition-all after:duration-300">
+          Surprise me
         </a>
         <a href="/about" class="relative text-lg font-semibold text-gray-700 hover:text-pink-500 transition-all duration-300 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-pink-500 hover:after:w-full after:transition-all after:duration-300">
           About us

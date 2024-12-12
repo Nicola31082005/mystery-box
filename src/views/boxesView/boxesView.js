@@ -1,5 +1,5 @@
 import { html } from 'lite-html'
-import { boxesApi } from '../services/firebaseService'
+import { boxesApi } from '../../services/firebaseService'
 
 const template = (boxes) => html`
 <section class="min-h-screen bg-gray-100 py-12">
