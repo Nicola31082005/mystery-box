@@ -16,6 +16,7 @@
   "dependencies": {
     "@tailwindcss/forms": "^0.5.9",
     "firebase": "^11.0.2",
+    "firebase-functions": "^6.1.2",
     "firebase-tools": "^13.28.0",
     "lite-html": "^0.2.4"
   },

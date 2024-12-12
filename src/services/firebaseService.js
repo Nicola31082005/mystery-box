@@ -1,4 +1,3 @@
-import { getCurrentDeals } from "../../functions";
 
 const baseUrl = 'https://mystery-box-project-default-rtdb.europe-west1.firebasedatabase.app'
 const functionsBaseUrl = 'https://us-central1-mystery-box-project.cloudfunctions.net'
