@@ -7,6 +7,7 @@ import { registerView } from "./views/authentication/registerView.js";
 import ctxEnhancer from "./middleware/ctxEnhancer.js";
 import { profileView } from "./views/userProfileView/profileView.js";
 import { aboutView } from "./views/about/aboutView.js";
+import { learnMore } from "./views/about/learn-moreView.js";
 
 //middlewares
 page(ctxEnhancer)
@@ -20,6 +21,7 @@ page('/register', registerView)
 page('/boxes', boxesView)
 page('/profile', profileView)
 page('/about', aboutView)
+page('/about/learn-more', learnMore)
 // page('/features', featuresView)
 
 

@@ -2,7 +2,7 @@ import { html } from "lite-html";
 
 const template = (user) => html`
 <!-- Add margin below the header -->
-<div class="mt-24 min-h-screen bg-gray-50">
+<div class="mt-24 min-h-screen bg-gray-100">
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-12">
       <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
