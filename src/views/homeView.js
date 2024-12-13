@@ -58,7 +58,10 @@ const template = () => html`
 ` 
 
 export function homeView(ctx) {
-    
+
+console.log(ctx.isAdmin);
+
+  
 const homeTemplate = template()
 ctx.render(homeTemplate)
 

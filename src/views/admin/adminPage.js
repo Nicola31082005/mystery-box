@@ -2,7 +2,7 @@ import { html } from 'lite-html'
 import { dealsApi } from '../../services/firebaseService.js'
 import page from 'page';
 
-const ADMIN_ID = '4fZIdNaLFyMMPYgqChakXOP03Z32';
+
 
 // Admin Page Template
 const template = (onSubmit) => html`
@@ -70,12 +70,11 @@ export function adminView(ctx) {
     
     const user = ctx.getUser()
     
-    if (!user || user.uid !== ADMIN_ID) {
-        alert('Access Denied. You are not an admin.');
-        page.redirect('/');
-        return;
-      }
-   
+    if (!ctx.isAuthenticated || !ctx.isAdmin) {
+      alert('Access Denied. You are not an admin.');
+      page.redirect('/');
+      return;
+    }
 
     const adminTemplate = template(adminHandler)
     ctx.render(adminTemplate)
