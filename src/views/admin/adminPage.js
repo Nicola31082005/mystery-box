@@ -89,12 +89,12 @@ async function adminHandler(e) {
   const boxId = formData.get('boxId')
   const startDate = formData.get('startDate')
   const endDate = formData.get('endDate')
-  const discount = formData.get('discount')
+  const discountPrice = formData.get('discount')
 
   try {
-    await dealsApi.addNewDeal({ boxId, startDate, endDate, discount })
+    await dealsApi.addNewDeal({ boxId, startDate, endDate, discountPrice })
     alert('Deal added successfully!')
-    e.currentTarget.reset() // Reset form after submission
+    e.target.reset() // Reset form after submission
   } catch (err) {
     console.error('Error adding deal:', err.message)
     alert('There was an error adding the deal.')
