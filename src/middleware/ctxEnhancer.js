@@ -1,19 +1,24 @@
 import { auth } from "../../firebase"
 
 
+
 export default async function (ctx, next) {
-    
-   // Set up the listener for authentication state changes
-  auth.onAuthStateChanged(user => {
-    // Store the user in ctx when authentication state changes
-    ctx.isAuthenticated = !!user;
-    
-    // Re-render the page with the updated auth state
-    ctx.render(ctx.bodyTemplate);
-  });
+  // Ensure that the Firebase user is initialized before proceeding
+  const waitForAuthState = () =>
+    new Promise((resolve) => {
+      const unsubscribe = auth.onAuthStateChanged((user) => {
+        unsubscribe(); // Stop listening after we get the state
+        resolve(user); // Resolve the promise with the user
+      });
+    });
 
-  ctx.getUser = () => auth.currentUser;
+  // Wait for Firebase to determine the auth state
+  const user = await waitForAuthState();
 
-  // Pass control to the next middleware
+  // Set up properties in the context
+  ctx.isAuthenticated = !!user;
+  ctx.getUser = () => user;
+
+  // Pass control to the next middleware or route
   next();
 }

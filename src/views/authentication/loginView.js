@@ -46,27 +46,24 @@ const template = (onSubmit) => html`
 ` 
 
 export function loginView(ctx) {
-    
-const loginTemplate = template(loginHandler)
-ctx.render(loginTemplate)
-
+  const loginTemplate = template(loginHandler.bind(ctx));
+  ctx.render(loginTemplate);
 }
 
 async function loginHandler(e) {
-    e.preventDefault()
+  e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
+  const formData = new FormData(e.currentTarget);
+  const email = formData.get('email');
+  const password = formData.get('password');
 
-    const email = formData.get('email')
-    const password = formData.get('password')
+  try {
+    const userCredential = await login(email, password);
+    console.log(userCredential);
+      
+    page.redirect('/');
 
-    try {
-      const userCredential = await login(email, password)
-      console.log(userCredential);
-      page.redirect('/')
-    } catch(err){
-      console.log(err.message);
-    }
+  } catch (err) {
+    console.log(err.message);
+  }
 }
-
-

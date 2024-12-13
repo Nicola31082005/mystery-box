@@ -25,7 +25,7 @@ page('/profile', profileView)
 page('/about', aboutView)
 page('/about/learn-more', learnMore)
 page('/boxes/surprise', suprisePage)
-page('/admin', adminView)
+page('/admin',adminView)
 
 
 
