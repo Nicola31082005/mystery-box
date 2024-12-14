@@ -43,39 +43,53 @@ exports.getCurrentDeals = functions.https.onRequest((req, res) => {
 exports.addNewDeal = functions.https.onRequest((req, res) => {
   cors(req, res, async () => {
     try {
-      
+      // Step 1: Verify the Firebase Authentication token
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
+
+      const idToken = authHeader.split("Bearer ")[1];
+      const decodedToken = await admin.auth().verifyIdToken(idToken);
+
+      // Step 2: Check admin status in Firestore
+      const userDoc = await admin.firestore().collection("users").doc(decodedToken.uid).get();
+
+      if (!userDoc.exists || !userDoc.data().isAdmin) {
+        return res.status(403).json({ error: "Forbidden: Admin access required" });
+      }
+
+      // Step 3: Validate the request payload
       const { boxId, startDate, endDate, discountPrice } = req.body;
 
       if (!boxId || !startDate || !endDate) {
-        return res.status(400).json({ error: 'Missing required fields' });
+        return res.status(400).json({ error: "Missing required fields" });
       }
 
       if (new Date(startDate) > new Date(endDate)) {
-        return res.status(400).json({ error: 'startDate must be before endDate' });
+        return res.status(400).json({ error: "startDate must be before endDate" });
       }
 
-      console.log("Checking if box exists for boxId:", boxId);
-      
-      const boxSnapshot = await db.ref(`/boxes/${boxId}`).once('value');
-
-      console.log("Box snapshot exists:", boxSnapshot.exists());
-
+      // Step 4: Check if the box exists in the database
+      const boxSnapshot = await db.ref(`/boxes/${boxId}`).once("value");
       if (!boxSnapshot.exists()) {
-        return res.status(400).json({ error: 'Box not found' });
+        return res.status(400).json({ error: "Box not found" });
       }
 
+      // Step 5: Add the new deal
       const newDeal = {
         boxId,
         startDate: new Date(startDate).getTime(),
         endDate: new Date(endDate).getTime(),
         discountPrice,
       };
-      const newDealRef = await db.ref('/deals').push(newDeal);
+      const newDealRef = await db.ref("/deals").push(newDeal);
 
       res.status(201).json({ id: newDealRef.key, ...newDeal });
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Internal server error' });
+      console.error("Error adding new deal:", err);
+      res.status(500).json({ error: "Internal server error" });
     }
   });
 });
+

@@ -1,14 +1,28 @@
-const baseUrl = 'https://mystery-box-project-default-rtdb.europe-west1.firebasedatabase.app'
+import { getAuth } from "firebase/auth";
 
+const baseUrl = 'https://mystery-box-project-default-rtdb.europe-west1.firebasedatabase.app';
 
 async function request(url, method = "GET", data = null) {
   const headers = {
     "Content-Type": "application/json",
   };
 
+  // Conditionally add the Authorization header if the user is authenticated
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (user) {
+    try {
+      const idToken = await user.getIdToken();
+      headers.Authorization = `Bearer ${idToken}`;
+    } catch (error) {
+      console.error("Error fetching ID token:", error);
+      throw new Error("Authentication failed. Please log in again.");
+    }
+  }
+
   const options = { 
     method,
-    headers
+    headers,
   };
 
   if (data) {
@@ -33,23 +47,17 @@ async function request(url, method = "GET", data = null) {
   return response.json();
 }
 
-
 export const boxesApi = {
-
-    getAll: () => request(`${baseUrl}/boxes`, "GET"),
-    getOne: (id) => request(`${baseUrl}/boxes/${id}`, "GET"),
-    updateBox: (id) => request(`${baseUrl}/boxes/${id}`, "POST", data),
-
-}
+  getAll: () => request(`${baseUrl}/boxes`, "GET"),
+  getOne: (id) => request(`${baseUrl}/boxes/${id}`, "GET"),
+  updateBox: (id, data) => request(`${baseUrl}/boxes/${id}`, "POST", data), // Fixed missing data argument
+};
 
 export const dealsApi = {
-
   getCurrentDeals: async () => {
-   return await request(`https://getcurrentdeals-h6puwdwppa-uc.a.run.app`, "GET")
+    return await request(`https://getcurrentdeals-h6puwdwppa-uc.a.run.app`, "GET");
   },
   addNewDeal: async (dealData) => {
-  return await request(`https://addnewdeal-h6puwdwppa-uc.a.run.app`, 'POST', dealData)
-  }
-
-
-}
+    return await request(`https://addnewdeal-h6puwdwppa-uc.a.run.app`, "POST", dealData);
+  },
+};
