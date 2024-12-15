@@ -59,7 +59,7 @@ const template = () => html`
 
 export function homeView(ctx) {
 
-console.log(ctx.getUser().uid);
+// console.log(ctx.getUser().uid);
 
   
 const homeTemplate = template()

@@ -10,7 +10,8 @@ async function request(url, method = "GET", data = null) {
   // Conditionally add the Authorization header if the user is authenticated
   const auth = getAuth();
   const user = auth.currentUser;
-  if (user) {
+  
+  if (method !== "GET" && user) {
     try {
       const idToken = await user.getIdToken();
       headers.Authorization = `Bearer ${idToken}`;
