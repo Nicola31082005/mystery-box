@@ -62,7 +62,7 @@ exports.addNewDeal = functions.https.onRequest((req, res) => {
       // Step 3: Validate the request payload
       const { boxId, startDate, endDate, discountPrice } = req.body;
 
-      if (!boxId || !startDate || !endDate) {
+      if (!boxId || !startDate || !endDate || !discountPrice) {
         return res.status(400).json({ error: "Missing required fields" });
       }
 
@@ -81,7 +81,7 @@ exports.addNewDeal = functions.https.onRequest((req, res) => {
         boxId,
         startDate: new Date(startDate).getTime(),
         endDate: new Date(endDate).getTime(),
-        discountPrice,
+        discountPrice: Number(discountPrice)
       };
       const newDealRef = await db.ref("/deals").push(newDeal);
 
