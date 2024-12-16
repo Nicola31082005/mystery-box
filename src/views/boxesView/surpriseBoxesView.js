@@ -62,7 +62,7 @@ const template = (deals) => html`
 export async function suprisePage(ctx) {
   const deals = await dealsApi.getCurrentDeals();
   const surpriseTemplate = template(deals);
-  console.log(deals);
+  
 
   ctx.render(surpriseTemplate);
 }

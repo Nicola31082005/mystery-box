@@ -11,6 +11,7 @@ import { learnMore } from "./views/about/learn-moreView.js";
 import { suprisePage } from "./views/boxesView/surpriseBoxesView.js";
 import { adminView } from "./views/admin/adminPage.js";
 import { updateProfilePictureView } from "./views/userProfileView/updatePictureView.js";
+import { changePasswordView } from "./views/userProfileView/changePasswordView.js";
 
 //middlewares
 page(ctxEnhancer)
@@ -26,6 +27,7 @@ page('/about', aboutView)
 page('/about/learn-more', learnMore)
 page('/profile', profileView)
 page('/profile/picture', updateProfilePictureView)
+page('/profile/password-change', changePasswordView)
 
 page('/admin',adminView)
 
