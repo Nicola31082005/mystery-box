@@ -1,5 +1,6 @@
 import { html } from "lite-html";
-import { doc, getDoc, firestore } from "../../../firebase"
+import { doc, getDoc, setDoc, firestore, storage } from "../../../firebase"
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const updateProfilePictureTemplate = (userData, handlePictureUpload, handleSubmit) => html`
   <div class="mt-24 min-h-screen bg-gray-100 flex items-center justify-center">
@@ -64,7 +65,6 @@ export async function updateProfilePictureView(ctx) {
 
   const handlePictureUpload = (e) => {
     selectedFile = e.target.files[0];
-    console.log('File selected:', selectedFile);
 
     if (selectedFile) {
       const reader = new FileReader();
@@ -85,7 +85,35 @@ export async function updateProfilePictureView(ctx) {
       return;
     }
 
-    // TODO: Upload logic for selectedFile
+    try{
+
+        const storageRef = ref(storage, `profilePictures/${user.uid}/${selectedFile.name}`)
+
+        // upload the file
+        const uploadResult = await uploadBytes(storageRef, selectedFile)
+
+        // get the file's download URL
+        const downloadURL = await getDownloadURL(uploadResult.ref)
+        console.log('File uploaded successfully. URL:', downloadURL);
+
+
+        // Update firestore
+        await setDoc(
+            userDocRef,
+            { profilePicture: downloadURL },
+            { merge: true }
+        )
+        
+        userData.profilePicture = downloadURL
+        const viewTemplate = updateProfilePictureTemplate(userData, handlePictureUpload, handleSubmit);
+        ctx.render(viewTemplate) 
+    
+    } catch(err){
+        console.error('Error updating profile picture:', err);
+        alert('Failed to update profile picture. Please try again.');
+    }
+
+    
     console.log('Uploading file:', selectedFile);
 
     // After successful upload, refresh the view or update the user's profile picture
