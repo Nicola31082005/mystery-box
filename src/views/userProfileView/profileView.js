@@ -1,5 +1,5 @@
 import { html } from "lite-html";
-import { doc, getDoc, firestore } from "../../../firebase"
+import { doc, getDoc, firestore } from "../../config/firebase"
 import page from "page";
 
 

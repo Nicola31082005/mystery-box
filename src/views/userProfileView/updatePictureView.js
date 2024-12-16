@@ -1,5 +1,5 @@
 import { html } from "lite-html";
-import { doc, getDoc, setDoc, firestore, storage } from "../../../firebase"
+import { doc, getDoc, setDoc, firestore, storage } from "../../config/firebase"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const updateProfilePictureTemplate = (userData, handlePictureUpload, handleSubmit) => html`

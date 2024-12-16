@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-    root: 'src',
+    base: '/mystery-box/',
     server: {
       port: 3000, // Change the default port
     },

@@ -1,4 +1,4 @@
-import { auth, firestore, doc, getDoc } from "../../firebase";
+import { auth, firestore, doc, getDoc } from "../config/firebase";
 
 export default async function (ctx, next) {
   const waitForAuthState = () =>

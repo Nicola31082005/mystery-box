@@ -1,5 +1,5 @@
 import { html } from 'lite-html';
-import { updatePassword, reauthenticateWithCredential, EmailAuthProvider, auth } from '../../../firebase'  
+import { updatePassword, reauthenticateWithCredential, EmailAuthProvider, auth } from '../../config/firebase'  
 import page from 'page';
 
 

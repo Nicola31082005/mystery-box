@@ -7,6 +7,7 @@
     "dev": "vite",
     "preview": "vite preview",
     "build": "vite build",
+    "deploy": "vite build && gh-pages -d dist",
     "buildCss": "npx tailwindcss -i ./src/tailwind.input.css -o ./src/css/output.css --watch"
   },
   "keywords": [],
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
+    "gh-pages": "^6.2.0",
     "page": "^1.11.6",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.16",

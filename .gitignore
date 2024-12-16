@@ -131,3 +131,6 @@ dist
 
 
 firebase.js
+
+# Ignore Vite build output
+# dist/
