@@ -1,5 +1,7 @@
 import { html } from "lite-html";
 import { doc, getDoc, firestore } from "../../../firebase"
+import page from "page";
+
 
 const template = (user, userData, updatePicture) => html`
 <!-- Add margin below the header -->
@@ -34,7 +36,7 @@ const template = (user, userData, updatePicture) => html`
             <h3 class="text-lg font-semibold text-gray-900 mb-4">Account Settings</h3>
             <ul class="space-y-3">
               <li>
-                <button @click=${updatePicture} class="flex items-center justify-between w-full text-left text-sm font-medium text-gray-700 bg-gray-50 p-4 rounded-lg hover:bg-gray-100">
+                <button @click=${() => page.redirect('/profile/picture')} class="flex items-center justify-between w-full text-left text-sm font-medium text-gray-700 bg-gray-50 p-4 rounded-lg hover:bg-gray-100">
                   <span>Update Profile Picture</span>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
@@ -94,10 +96,6 @@ export async function profileView(ctx) {
     const userData = userDoc.exists()
     ? userDoc.data()
     : {}
-    
-
-    console.log(userData.profilePicture);
-  
 
     const profileTemplate = template(user, userData)
     ctx.render(profileTemplate)

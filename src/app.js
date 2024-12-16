@@ -18,16 +18,16 @@ page(layoutView)
 
 //routes
 page('/', homeView)
-page('/boxes', boxesView)
 page('/login', loginView)
 page('/register', registerView)
 page('/boxes', boxesView)
-page('/profile', profileView)
+page('/boxes/surprise', suprisePage)
 page('/about', aboutView)
 page('/about/learn-more', learnMore)
-page('/boxes/surprise', suprisePage)
+page('/profile', profileView)
+page('/profile/picture', updateProfilePictureView)
+
 page('/admin',adminView)
-page('/picture', updateProfilePictureView)
 
 
 
