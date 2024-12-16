@@ -10,6 +10,7 @@ import { aboutView } from "./views/about/aboutView.js";
 import { learnMore } from "./views/about/learn-moreView.js";
 import { suprisePage } from "./views/boxesView/surpriseBoxesView.js";
 import { adminView } from "./views/admin/adminPage.js";
+import { updateProfilePictureView } from "./views/userProfileView/updatePictureView.js";
 
 //middlewares
 page(ctxEnhancer)
@@ -26,6 +27,7 @@ page('/about', aboutView)
 page('/about/learn-more', learnMore)
 page('/boxes/surprise', suprisePage)
 page('/admin',adminView)
+page('/picture', updateProfilePictureView)
 
 
 
