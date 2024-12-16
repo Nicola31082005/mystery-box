@@ -1,5 +1,5 @@
 import { html } from 'lite-html';
-import { updatePassword } from '../../../firebase'  
+import { updatePassword, reauthenticateWithCredential, EmailAuthProvider, auth } from '../../../firebase'  
 import page from 'page';
 
 
@@ -11,6 +11,19 @@ const template = (handleSubmit) => html`
       <!-- Change Password Form -->
       <form @submit=${handleSubmit} class="space-y-4">
         
+         <!-- Current Password -->
+         <div>
+          <label for="currentPassword" class="block text-sm font-medium text-gray-700">Current Password</label>
+          <input
+            type="password"
+            name="currentPassword"
+            id="currentPassword"
+            class="mt-1 block w-full px-4 py-2 text-sm border rounded-lg shadow-sm focus:ring focus:ring-indigo-300 focus:outline-none"
+            placeholder="Enter current password"
+            required
+          />
+        </div>
+
         <!-- New Password -->
         <div>
           <label for="newPassword" class="block text-sm font-medium text-gray-700">New Password</label>
@@ -62,12 +75,13 @@ async function handleSubmit(e) {
 
     const formData = new FormData(e.currentTarget);
 
+    const currentPassword = formData.get('currentPassword')
     const newPassword = formData.get('newPassword')
     const confirmPassword = formData.get('confirmPassword')
 
     try{
 
-    if (!newPassword || !confirmPassword) {
+    if (!newPassword || !confirmPassword || !currentPassword) {
         alert('Fill all the fields!')
         return
     }
@@ -78,9 +92,15 @@ async function handleSubmit(e) {
     }
 
     const user = this.getUser()
+    const credential = EmailAuthProvider.credential(user.email, currentPassword)
+
+    await reauthenticateWithCredential(user, credential)
     
-    const response = await updatePassword(user, newPassword)
+
+    await updatePassword(user, newPassword)
     alert('Password is changed successfully!')
+    e.target.reset()
+
     page.redirect('/')
     
     } catch (err) { 
