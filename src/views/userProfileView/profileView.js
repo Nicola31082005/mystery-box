@@ -1,6 +1,7 @@
 import { html } from "lite-html";
+import { doc, getDoc, firestore } from "../../../firebase"
 
-const template = (user) => html`
+const template = (user, userData) => html`
 <!-- Add margin below the header -->
 <div class="mt-24 min-h-screen bg-gray-100">
     <!-- Main Content -->
@@ -11,9 +12,15 @@ const template = (user) => html`
           <div class="flex items-center space-x-4 mb-6">
             <!-- Profile Picture -->
             <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400">
-                <path d="M12 12c2.761 0 5-2.238 5-5s-2.239-5-5-5-5 2.238-5 5 2.239 5 5 5zm0 2c-3.866 0-7 3.134-7 7h14c0-3.866-3.134-7-7-7z" />
-              </svg>
+              ${userData.profilePicture
+                ? html`<img src=${userData.profilePicture} alt="Profile Picture" class="w-16 h-16 object-cover rounded-full"/>`
+                : html`
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400">
+                  <path d="M12 12c2.761 0 5-2.238 5-5s-2.239-5-5-5-5 2.238-5 5 2.239 5 5 5zm0 2c-3.866 0-7 3.134-7 7h14c0-3.866-3.134-7-7-7z" />
+                </svg>
+                `
+              }
+
             </div>
             <!-- User Details -->
             <div>
@@ -80,7 +87,19 @@ const template = (user) => html`
 export async function profileView(ctx) {
     
     const user = ctx.getUser()
-    const profileTemplate = template(user)
+
+    const userDocRef = doc(firestore,'/users', user.uid);
+    const userDoc = await getDoc(userDocRef);
+
+    const userData = userDoc.exists()
+    ? userDoc.data()
+    : {}
+    
+
+    console.log(userData.profilePicture);
+  
+
+    const profileTemplate = template(user, userData)
     ctx.render(profileTemplate)
 
 
