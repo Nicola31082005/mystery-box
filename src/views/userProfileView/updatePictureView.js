@@ -11,9 +11,9 @@ const updateProfilePictureTemplate = (userData, handlePictureUpload, handleSubmi
       <div class="flex items-center justify-center mb-4">
         <div class="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
           ${userData.previewPicture
-            ? html`<img src=${userData.previewPicture} alt="Preview Profile Picture" class="w-full h-full object-cover" />`
+            ? html`<img src=${userData.previewPicture} alt="Preview Profile Picture" class="rounded-full" />`
             : userData.profilePicture
-            ? html`<img src=${userData.profilePicture} alt="Current Profile Picture" class="w-full h-full object-cover" />`
+            ? html`<img src=${userData.profilePicture} alt="Current Profile Picture" class="rounded-full" />`
             : html`
               <svg
                 xmlns="http://www.w3.org/2000/svg"
