@@ -13,7 +13,12 @@ Welcome to the **Mystery Box SPA**! This project is a sleek single-page applicat
 
 ---
 
+## 🎥 Live Demo
+
+[Check out the live demo here!](https://mystery-box-project.web.app)
 ## 🖥️ Tech Stack
+
+---
 
 Here’s an overview of the technologies and libraries used in this project:
 
@@ -34,12 +39,6 @@ Here’s an overview of the technologies and libraries used in this project:
 - **Autoprefixer**: Adds vendor prefixes automatically for better browser compatibility.
 - **Firebase Tools**: CLI for managing Firebase deployments and configurations.
 - **Tailwind Forms**: Plugin for enhancing form styles in Tailwind CSS.
-
----
-
-## 🎥 Live Demo
-
-[Check out the live demo here!](https://mystery-box-project.web.app)
 
 ---
 
