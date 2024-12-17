@@ -15,7 +15,7 @@ Welcome to the **Mystery Box SPA**! This project is a sleek single-page applicat
 
 ## 🎥 Live Demo
 
-[Check out the live demo here!]( https://nicola31082005.github.io/mystery-box/)
+[Check out the live demo here!](https://mystery-box-project.web.app)
 
 ---
 
